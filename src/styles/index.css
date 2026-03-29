@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Nunito:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Variables CSS (couleurs personnalisées) ── */
+:root {
+  --marine:       #1e3a5f;
+  --marine-fonce: #0f1e34;
+  --or:           #d4a017;
+  --or-clair:     #f0c040;
+  --orange:       #e8600a;
+  --orange-hover: #c2410c;
+  --vert:         #22c55e;
+  --blanc:        #fafaf8;
+  --texte:        #1a1a2e;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--blanc);
+  color: var(--texte);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Texture subtile ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23000' opacity='0.015'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f0f0f0; }
+::-webkit-scrollbar-thumb { background: var(--or); border-radius: 4px; }
+
+/* ════════════════════════════════════
+   COMPOSANTS
+   RÈGLE: @apply n'utilise que des
+   classes Tailwind standard (pas de
+   couleurs personnalisées). Les couleurs
+   custom sont définies en CSS direct.
+   ════════════════════════════════════ */
+@layer components {
+
+  /* ─── Bouton principal (orange) ─── */
+  .btn-principal {
+    @apply inline-block font-corps font-bold px-6 py-3
+           transition-all duration-200 uppercase tracking-widest text-sm
+           border-2 shadow-md hover:shadow-lg cursor-pointer text-center;
+    background-color: var(--orange);
+    border-color: var(--orange);
+    color: #ffffff;
+  }
+  .btn-principal:hover {
+    background-color: var(--orange-hover);
+    border-color: var(--orange-hover);
+  }
+
+  /* ─── Bouton secondaire (contour blanc) ─── */
+  .btn-secondaire {
+    @apply inline-block font-corps font-bold px-6 py-3
+           border-2 border-white transition-all duration-200
+           uppercase tracking-widest text-sm cursor-pointer text-center;
+    background-color: transparent;
+    color: #ffffff;
+  }
+  .btn-secondaire:hover {
+    background-color: #ffffff;
+    color: var(--marine);
+  }
+
+  /* ─── Bouton contour marine ─── */
+  .btn-contour {
+    @apply inline-block font-corps font-bold px-6 py-3
+           transition-all duration-200 uppercase tracking-widest text-sm
+           border-2 cursor-pointer text-center;
+    background-color: transparent;
+    color: var(--marine);
+    border-color: var(--marine);
+  }
+  .btn-contour:hover {
+    background-color: var(--marine);
+    color: #ffffff;
+  }
+
+  /* ─── Bouton doré (or) ─── */
+  .btn-or {
+    @apply inline-block font-corps font-bold px-6 py-3
+           transition-all duration-200 uppercase tracking-widest text-sm
+           shadow-lg cursor-pointer text-center;
+    background-color: var(--or);
+    color: #1a1000;
+  }
+  .btn-or:hover {
+    background-color: var(--or-clair);
+  }
+
+  /* ─── Étiquette de section ─── */
+  .etiquette-section {
+    @apply font-mono text-xs uppercase font-medium;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+  }
+
+  /* ─── Titre de section (foncé) ─── */
+  .titre-section {
+    @apply font-titre font-bold leading-tight text-3xl md:text-5xl;
+    color: var(--marine);
+  }
+
+  /* ─── Titre de section (blanc) ─── */
+  .titre-section-blanc {
+    @apply font-titre font-bold text-white leading-tight text-3xl md:text-5xl;
+  }
+
+  /* ─── Carte ─── */
+  .carte {
+    @apply bg-white border border-gray-100 shadow-sm
+           hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+  .carte:hover {
+    border-color: var(--or);
+  }
+
+  /* ─── Champ de saisie ─── */
+  .champ {
+    @apply w-full border border-gray-300 bg-white px-4 py-3 font-corps
+           focus:outline-none focus:ring-2 focus:ring-orange-200
+           transition-colors duration-200 rounded-sm placeholder-gray-400 text-sm;
+    color: var(--texte);
+  }
+  .champ:focus {
+    border-color: var(--orange);
+    outline: none;
+  }
+
+  /* ─── Lien de navigation ─── */
+  .lien-nav {
+    @apply font-corps font-semibold text-sm uppercase tracking-wider
+           transition-colors duration-200 relative;
+  }
+
+  /* ─── Badges de catégorie ─── */
+  .badge-paramedical {
+    @apply bg-blue-50 text-blue-700 border border-blue-200;
+  }
+  .badge-cosmetologie {
+    @apply bg-amber-50 text-amber-700 border border-amber-200;
+  }
+}
+
+/* ── Animation d'entrée de page ── */
+.entree-page {
+  animation: glisserHaut 0.5s ease forwards;
+}
+
+@keyframes glisserHaut {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Texte dégradé doré ── */
+.texte-or {
+  background: linear-gradient(135deg, #d4a017 0%, #f0c040 50%, #c8920e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Ligne décorative or ── */
+.ligne-or {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #d4a017, #f0c040);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* ── Fond marine avec dégradés ── */
+.fond-pattern {
+  background-color: var(--marine-fonce);
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(212,160,23,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(232,96,10,0.06) 0%, transparent 50%);
+}
