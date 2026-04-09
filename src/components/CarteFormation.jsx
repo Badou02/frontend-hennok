@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const ICONES_CATEGORIE = {
   'Paramédical':   '🏥',
-  'Cosmétologie':  '🧴',
+  'Saponification':  '🧴',
   'Transformation': '🥫',
 };
 
@@ -43,18 +43,50 @@ export default function CarteFormation({ formation, index = 0 }) {
         </div>
 
         {/* Titre */}
-        <h3 className="font-titre text-lg font-bold mb-2 group-hover:text-orange-600 transition-colors leading-tight"
-          style={{color:'#1e3a5f'}}>
-          {formation.titre}
-        </h3>
-
+        <h3 className="font-bold text-lg">
+  {formation.titre}
+  {formation.doubleDiplome  && (
+    <span className="ml-2 px-2 py-1 text-xs font-semibold rounded"
+      style={{ backgroundColor: '#d4a017', color: 'white' }}>
+      Double diplomation
+    </span>
+  )}
+</h3>
         {/* Description */}
         <p className="font-corps text-sm text-gray-500 leading-relaxed flex-1 mb-4">
           {formation.description.length > 120
             ? formation.description.slice(0, 120) + '...'
             : formation.description}
         </p>
+    {formation.modules && (
+  <div className="mb-4 space-y-2">
+    
+   {formation.modules && (
+  <div className="mb-4 space-y-2">
+    {formation.modules.map((module, i) => (
+      <div key={i} className="text-xs bg-orange-50 border border-orange-100 p-2 rounded">
 
+        <div className="flex justify-between items-center">
+          <span className="font-semibold text-orange-700">
+            📦 {module.titre}
+          </span>
+
+          <span className="font-bold text-green-600">
+            {module.prix.toLocaleString()} FCFA
+          </span>
+        </div>
+
+        <p className="text-gray-600">
+          {module.contenu}
+        </p>
+
+      </div>
+    ))}
+  </div>
+)}
+
+  </div>
+)}
         {/* Tags */}
         {formation.tags?.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
@@ -75,12 +107,13 @@ export default function CarteFormation({ formation, index = 0 }) {
   </div>
 
   <div className="flex justify-between">
-    <span>📝 Inscription</span>
+    <span>📝 Inscription</span> 
     <span className="font-semibold">
       {formation.inscription?.toLocaleString('fr-FR')} FCFA
     </span>
   </div>
 
+  
   <div className="flex justify-between">
     <span>📅 Mensualité</span>
     <span className="font-semibold">

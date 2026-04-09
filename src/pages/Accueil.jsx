@@ -5,9 +5,9 @@ import CarteTemoignage from '../components/CarteTemoignage';
 import { formationAPI, temoignageAPI } from '../utils/api';
 
 const FORMATIONS_MOCK = [
-  { _id: '1', titre: 'Ambulancier', categorie: 'Paramédical', description: 'Formation complète aux techniques de secourisme, transport médicalisé et prise en charge des patients en situation d\'urgence. Obtenez votre diplôme reconnu par le Ministère de l\'Emploi et de la Formation Professionnelle.', duree: '6 mois',inscription: 25000,mensualite: 50000,prix: 425000, tags: ['Secourisme', 'Urgences', 'Transport médical'], vedette: true },
-  { _id: '5', titre: 'Délégué Médical', categorie: 'Paramédical', description: '', duree: '8 mois',  prix: 425000,   tags: ['Savon', 'Artisanat', 'Cosmétique'], vedette: true },
-  { _id: '5', titre: 'Saponification à Chaud et à Froid', categorie: 'Cosmétologie', description: 'Apprenez les deux méthodes de fabrication artisanale du savon : à chaud et à froid. Devenez un expert de la saponification professionnelle.', duree: '2 mois', prix: 85000, formateur: 'Mme. Rokhaya Fall', places: 20, inscrits: 16, tags: ['Savon', 'Artisanat', 'Cosmétique'], vedette: true },
+  { _id: '5', titre: 'Délégué Médical & Vendeur en Pharmacie ', doubleDiplome:true , categorie: 'Paramédical', description: 'Elle forme les apprenants à promouvoir efficacement des produits de santé auprès des professionnels (médecins, pharmaciens) tout en maîtrisant la vente, le conseil et la gestion en officine.', duree: '8 mois', inscription: 75000,mensualite: 50000, prix: 475000,   tags: ['VendeurPharmacie', 'CommercialSanté','IndustriePharmaceutique'], vedette: true },
+  { _id: '3', titre: 'Agent de Santé Communautaire', categorie: 'Paramédical', description: 'Formez-vous à la promotion de la santé publique, à la prévention des maladies et à l\'éducation sanitaire au sein des communautés. Un rôle essentiel pour le développement de la santé en Afrique.', duree: '4 mois',inscription: 50000,mensualite: 35000,prix: 190000, tags: ['Santé publique', 'Prévention', 'Communauté'], vedette: true },
+  { _id: '6', titre: 'Transformation des fruits et légumes', categorie: 'Transformation', description: 'Formation pratique en transformation des fruits et légumes : jus, confitures, séchage et conservation. Apprenez à créer des produits agroalimentaires de qualité et à lancer votre propre activité rentable.', duree: '5 jours',inscription: 25000, mensualite:50000,  prix: 75000, tags: ['Fruits', 'légumes', 'Transformation'], vedette: false },
 ];
 const TEMOIGNAGES_MOCK = [
   { _id: '1', nom: 'Aminata Diallo', role: 'Ambulancière, Hôpital de Diamniadio', formation: 'Ambulancier', note: 5, contenu: 'L\'Institut Henok a transformé ma vie. Les formateurs sont exceptionnels et la formation est très pratique. J\'ai trouvé un emploi à l\'hôpital deux mois après l\'obtention de mon diplôme !', approuve: true },
@@ -24,7 +24,7 @@ const AVANTAGES = [
  
 const CATEGORIES_FORMATION = [
   { icone: '🏥', titre: 'Formations Paramédicales', description: 'Ambulancier, Brancardier, Agent de Santé Communautaire, Technicien de Surface', couleur: '#1e3a5f' },
-  { icone: '🧴', titre: 'Formations en Cosmétologie', description: 'Saponification, Savons, Crèmes Capillaires, Gels Douche, Shampoings', couleur: '#d97706' },
+  { icone: '🧴', titre: 'Formations en Saponification', description: 'Saponification, Savons, SaponificationAChaud, Détergents, Shampoings', couleur: '#d97706' },
   { icone: '🍍', titre: 'Formations en Transformation fruits et Légumes', description: "Apprenez à valoriser les produits agricoles locaux grâce aux techniques modernes de transformation des fruits et légumes. ", couleur: '#d97706' },
 
 ];
@@ -229,19 +229,20 @@ export default function Accueil() {
               <div className="absolute -right-10 -bottom-10 text-9xl opacity-5">🏥</div>
             </div>
 
-            {/* Cosmétologie */}
+            {/* Saponification */}
             <div className="relative overflow-hidden rounded-sm p-8 shadow-xl border border-amber-100"
               style={{background:'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)'}}>
               <div className="relative z-10">
                 <div className="text-5xl mb-4">🧴</div>
-                <h3 className="font-titre text-2xl font-bold mb-3" style={{color:'#1e3a5f'}}>Formation Cosmétologique</h3>
+                <h3 className="font-titre text-2xl font-bold mb-3" style={{color:'#1e3a5f'}}>Formation Saponification</h3>
                 <p className="font-corps text-gray-600 mb-5 leading-relaxed">
-                  Maîtrisez la fabrication artisanale et professionnelle de produits cosmétiques : 
-                  savons, crèmes. Créez votre propre entreprise ou intégrez 
-                  l'industrie de la beauté.
+                  La formation en saponification est un programme pratique et complet qui permet de maîtriser la fabrication de divers produits d’hygiène et d’entretien. Elle est structurée en deux modules : <br></br>
+                  Module 1 : techniques de saponification à chaud et à froid, avec la production de savon liquide, savon en poudre, savon de toilette et savon ordinaire.
+                  <br></br>
+                  Module 2 : fabrication de détergents et décapants, ainsi que des produits cosmétiques comme les shampoings et les gels de douche.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  {['Saponification à Chaud et à Froid', 'Savon Liquide & en Poudre', 'Savon de Toilette & Ordinaire'].map(f => (
+                  {['Saponification à Chaud et à Froid', 'Savon Liquide & en Poudre', 'Détergents & shampoings et les gels de douche'].map(f => (
                     <li key={f} className="flex items-center gap-2 font-corps text-sm text-gray-600">
                       <span className="text-lg" style={{color:"#d97706"}}>✓</span> {f}
                     </li>

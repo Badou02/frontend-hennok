@@ -3,16 +3,30 @@ import CarteFormation from '../components/CarteFormation';
 import { formationAPI } from '../utils/api';
 
 const TOUTES_FORMATIONS = [
-  { _id: '1', titre: 'Ambulancier', categorie: 'Paramédical', description: 'Formation complète aux techniques de secourisme, transport médicalisé et prise en charge des patients en situation d\'urgence. Obtenez votre diplôme reconnu par le Ministère de l\'Emploi et de la Formation Professionnelle.', duree: '6 mois',inscription: 25000,mensualite: 50000,prix: 425000, tags: ['Secourisme', 'Urgences', 'Transport médical'], vedette: true },
-  { _id: '2', titre: 'Brancardier', categorie: 'Paramédical', description: 'Apprenez les techniques de manutention sécurisée des patients, le déplacement en milieu hospitalier et la coordination avec les équipes soignantes. Formation certifiée et reconnue nationalement.', duree: '6 mois',inscription: 25000,mensualite: 50000,prix: 425000, tags: ['Hôpital', 'Manutention', 'Soins'], vedette: true },
-  { _id: '3', titre: 'Agent de Santé Communautaire', categorie: 'Paramédical', description: 'Formez-vous à la promotion de la santé publique, à la prévention des maladies et à l\'éducation sanitaire au sein des communautés. Un rôle essentiel pour le développement de la santé en Afrique.', duree: '6 mois',inscription: 25000,mensualite: 50000,prix: 425000, tags: ['Santé publique', 'Prévention', 'Communauté'], vedette: true },
-  { _id: '4', titre: 'Technicien de Surface en Milieu Hospitalier', categorie: 'Paramédical', description: 'Maîtrisez les protocoles de nettoyage et de désinfection en milieu hospitalier, la gestion des déchets biomédicaux et les normes d\'hygiène strictes du secteur de la santé.', duree: '6 mois',inscription: 25000,mensualite: 50000,prix: 425000, tags: ['Hygiène', 'Désinfection', 'Hôpital'], vedette: false },
-  { _id: '5', titre: 'Délégué Médical', categorie: 'Paramédical', description: '', duree: '8 mois',  prix: 425000,   tags: ['Savon', 'Artisanat', 'Cosmétique'], vedette: true },
-  { _id: '6', titre: 'Vendeur en Pharmacie', categorie: 'Paramédical', description: '', duree: '8 mois',  prix: 425000,   tags: ['Savon', 'Artisanat', 'Cosmétique'], vedette: true },
-  { _id: '7', titre: 'Transformation des fruits et légumes', categorie: 'Transformation', description: "Formation pratique en transformation des fruits et légumes : jus, confitures, séchage et conservation. Apprenez à créer des produits agroalimentaires de qualité et à lancer votre propre activité rentable.", duree: 'Une semaine ',inscription: "",mensualite: "",prix: 75000, tags: ['Fruits', 'légumes', 'Transformation'], vedette: false },
+  { _id: '1', titre: 'Ambulancier', categorie: 'Paramédical', description: 'Formation complète aux techniques de secourisme, transport médicalisé et prise en charge des patients en situation d\'urgence. Obtenez votre diplôme reconnu par le Ministère de l\'Emploi et de la Formation Professionnelle.', duree: '4 mois',inscription: 50000,mensualite: 35000,prix: 190000, tags: ['Secourisme', 'Urgences', 'Transport médical'], vedette: true },
+  { _id: '2', titre: 'Brancardier', categorie: 'Paramédical', description: 'Apprenez les techniques de manutention sécurisée des patients, le déplacement en milieu hospitalier et la coordination avec les équipes soignantes. Formation certifiée et reconnue nationalement.',  duree: '4 mois',inscription: 50000,mensualite: 35000,prix: 190000, tags: ['Hôpital', 'Manutention', 'Soins'], vedette: true },
+  { _id: '3', titre: 'Agent de Santé Communautaire', categorie: 'Paramédical', description: 'Formez-vous à la promotion de la santé publique, à la prévention des maladies et à l\'éducation sanitaire au sein des communautés. Un rôle essentiel pour le développement de la santé en Afrique.', duree: '4 mois',inscription: 50000,mensualite: 35000,prix: 190000, tags: ['Santé publique', 'Prévention', 'Communauté'], vedette: true },
+  { _id: '4', titre: 'Technicien de Surface en Milieu Hospitalier', categorie: 'Paramédical', description: 'Maîtrisez les protocoles de nettoyage et de désinfection en milieu hospitalier, la gestion des déchets biomédicaux et les normes d\'hygiène strictes du secteur de la santé.',  duree: '4 mois',inscription: 50000,mensualite: 35000,prix: 190000, tags: ['Hygiène', 'Désinfection', 'Hôpital'], vedette: false },
+  { _id: '5', titre: 'Délégué Médical & Vendeur en Pharmacie ', doubleDiplome:true , categorie: 'Paramédical', description: 'Elle forme les apprenants à promouvoir efficacement des produits de santé auprès des professionnels (médecins, pharmaciens) tout en maîtrisant la vente, le conseil et la gestion en officine.', duree: '8 mois', inscription: 75000,mensualite: 50000, prix: 475000,   tags: ['VendeurPharmacie', 'CommercialSanté','IndustriePharmaceutique'], vedette: true },
+  { _id: '6', titre: 'Transformation des fruits et légumes', categorie: 'Transformation', description: 'Formation pratique en transformation des fruits et légumes : jus, confitures, séchage et conservation. Apprenez à créer des produits agroalimentaires de qualité et à lancer votre propre activité rentable.', duree: '5 jours',inscription: 25000, mensualite:50000,  prix: 75000, tags: ['Fruits', 'légumes', 'Transformation'], vedette: false },
+  { _id: '7', titre: 'Formation en Saponification',categorie: 'Saponification',description: 'Formation pratique en fabrication de savons et produits d’hygiène. Cette formation est composée de 2 modules indépendants à 50.000 FCFA chacun.',duree: '3 jours',prix: 100000 ,vedette: true,
+    modules: [
+    {
+      titre: 'Module 1',
+      prix: 50000,
+      contenu: 'Saponification à chaud et à froid, savon liquide, savon en poudre, savon toilette, savon ordinaire'
+    },
+    {
+      titre: 'Module 2',
+      prix: 50000,
+      contenu: 'Détergents, décapants, shampoing et gels de douche'
+    }
+  ]
+}
 ];
 
-const CATEGORIES = ['Toutes', 'Paramédical', 'Cosmétologie', 'Transformation'];
+
+const CATEGORIES = ['Toutes', 'Paramédical', 'Saponification', 'Transformation'];
 
 export default function Formations() {
   const [formations, setFormations] = useState(TOUTES_FORMATIONS);
@@ -38,7 +52,7 @@ export default function Formations() {
   }, [formations, categorie, recherche]);
 
   const paramedicals = filtrees.filter(f => f.categorie === 'Paramédical');
-  const cosmetologies = filtrees.filter(f => f.categorie === 'Cosmétologie');
+  const Saponification = filtrees.filter(f => f.categorie === 'Saponification');
   const Transformation = filtrees.filter(f => f.categorie === 'Transformation');
 
   return (
@@ -84,10 +98,10 @@ export default function Formations() {
                     : 'bg-white text-gray-500 border-gray-200 hover:border-gray-400'
                 }`}
                 style={categorie === cat ? {
-                  backgroundColor: cat === 'Paramédical' ? '#1e3a5f' : cat === 'Cosmétologie' ? '#d97706' : '#1e3a5f',
-                  borderColor: cat === 'Paramédical' ? '#1e3a5f' : cat === 'Cosmétologie' ? '#d97706' : '#1e3a5f'
+                  backgroundColor: cat === 'Paramédical' ? '#1e3a5f' : cat === 'Saponification' ? '#d97706' : '#1e3a5f',
+                  borderColor: cat === 'Paramédical' ? '#1e3a5f' : cat === 'Saponification' ? '#d97706' : '#1e3a5f'
                 } : {}}>
-                {cat === 'Paramédical' ? '🏥 ' : cat === 'Cosmétologie' ? '🧴 ' : ''}{cat}
+                {cat === 'Paramédical' ? '🏥 ' : cat === 'Saponification' ? '🧴 ' : ''}{cat}
               </button>
             ))}
           </div>
@@ -134,29 +148,30 @@ export default function Formations() {
               </div>
             )}
 
-            {/* Section Cosmétologie
-            {cosmetologies.length > 0 && (
+            { /*Section Saponification*/}
+            {Saponification.length > 0 && (
               <div>
                 <div className="flex items-center gap-4 mb-7">
                   <span className="text-3xl">🧴</span>
                   <div>
-                    <h2 className="font-titre text-2xl font-bold" style={{color:'#92400e'}}>Formations en Cosmétologie</h2>
-                    <p className="font-corps text-sm text-gray-500">Savons, crèmes, shampooings et produits d'hygiène artisanaux</p>
+                    <h2 className="font-titre text-2xl font-bold" style={{color:'#92400e'}}>Formations en Saponification</h2>
+                    <p className="font-corps text-sm text-gray-500">FabricationSavon, SavonLiquide, shampooings et produits d'hygiène artisanaux</p>
                   </div>
                   <div className="ml-auto hidden md:block">
                     <span className="font-mono text-xs px-3 py-1 rounded-sm"
                       style={{backgroundColor:'rgba(217,119,6,0.08)', color:'#92400e', border:'1px solid rgba(217,119,6,0.2)'}}>
-                      {cosmetologies.length} formation{cosmetologies.length > 1 ? 's' : ''}
+                      {Saponification.length} formation{Saponification.length > 1 ? 's' : ''}
                     </span>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-                  {cosmetologies.map((f, i) => (
+                  {Saponification.map((f, i) => (
                     <CarteFormation key={f._id} formation={f} index={i}/>
                   ))}
                 </div>
               </div>
-            )} */}
+            )} 
+
             {/* Section Transformation */}
             {Transformation.length > 0 && (
               <div>
@@ -170,7 +185,7 @@ export default function Formations() {
                     <span className="font-mono text-xs px-3 py-1 rounded-sm"
                       style={{backgroundColor:'rgba(36, 201, 77, 0.08)', color:'#31920e', border:'1px solid rgba(6, 217, 24, 0.2)'}}>
                       {Transformation.length} formation{Transformation.length > 1 ? 's' : ''}
-                    </span>
+                    </span> 
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
